@@ -6,10 +6,8 @@ import * as schema from "./schema/index.js";
 const connectionString = process.env.DATABASE_URL;
 
 if (!connectionString) {
-  console.warn(
-    "WARNING: DATABASE_URL is not defined in environment variables.",
-  );
+  throw new Error("DATABASE_URL is not defined in environment variables.");
 }
 
-const sql = neon(connectionString || "");
+const sql = neon(connectionString);
 export const db = drizzle(sql, { schema });

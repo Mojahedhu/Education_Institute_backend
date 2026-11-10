@@ -8,10 +8,11 @@ import {
 } from "drizzle-orm/pg-core";
 
 const timestamps = {
-  createdAt: timestamp("createAt").defaultNow().notNull,
+  createdAt: timestamp("createAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt")
     .defaultNow()
-    .$onUpdate(() => new Date()).notNull,
+    .$onUpdate(() => new Date())
+    .notNull(),
 };
 
 export const departments = pgTable("departments", {
@@ -19,7 +20,7 @@ export const departments = pgTable("departments", {
   code: varchar("code", { length: 50 }).notNull().unique(),
   name: varchar("name", { length: 255 }).notNull(),
   description: text("description"),
-  ...timestamp,
+  ...timestamps,
 });
 
 export const subjects = pgTable("subjects", {
@@ -30,7 +31,7 @@ export const subjects = pgTable("subjects", {
   code: varchar("code", { length: 50 }).notNull().unique(),
   name: varchar("name", { length: 255 }).notNull(),
   description: text("description"),
-  ...timestamp,
+  ...timestamps,
 });
 
 export const departmentsRelations = relations(departments, ({ many }) => ({
