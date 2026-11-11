@@ -3,6 +3,8 @@ CREATE TABLE "departments" (
 	"code" varchar(50) NOT NULL,
 	"name" varchar(255) NOT NULL,
 	"description" text,
+	"createAt" timestamp DEFAULT now() NOT NULL,
+	"updatedAt" timestamp DEFAULT now() NOT NULL,
 	CONSTRAINT "departments_code_unique" UNIQUE("code")
 );
 --> statement-breakpoint
@@ -12,6 +14,8 @@ CREATE TABLE "subjects" (
 	"code" varchar(50) NOT NULL,
 	"name" varchar(255) NOT NULL,
 	"description" text,
+	"createAt" timestamp DEFAULT now() NOT NULL,
+	"updatedAt" timestamp DEFAULT now() NOT NULL,
 	CONSTRAINT "subjects_code_unique" UNIQUE("code")
 );
 --> statement-breakpoint
