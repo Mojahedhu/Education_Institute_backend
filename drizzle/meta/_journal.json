@@ -8,6 +8,13 @@
       "when": 1794362067846,
       "tag": "0000_common_strong_guy",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794574942174,
+      "tag": "0001_zippy_wolfsbane",
+      "breakpoints": true
     }
   ]
 }
