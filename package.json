@@ -23,6 +23,7 @@
     "@arcjet/node": "^1.15.0",
     "@neondatabase/serverless": "^1.2.0",
     "@types/cors": "^2.8.19",
+    "better-auth": "^1.7.23",
     "cors": "^2.8.6",
     "dotenv": "^18.0.10",
     "drizzle-orm": "^0.45.4",
