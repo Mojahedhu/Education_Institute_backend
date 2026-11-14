@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import { errorHandler } from "./middleware/error-handler.js";
 import subjectRouter from "./routes/subject.js";
+import securityMiddleware from "./middleware/security.js";
 const PORT = Number(process.env.PORT) || 8000;
 const FRONTEND_URL = process.env.FRONTEND_URL;
 if (!FRONTEND_URL) {
@@ -20,6 +21,8 @@ app.use(
 );
 
 app.use(express.json());
+
+app.use(securityMiddleware);
 
 app.use("/api/subjects", subjectRouter);
 
