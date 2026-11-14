@@ -4,6 +4,6 @@ type Schedule = {
   endTime: string;
 };
 
-type userRole = "admin" | "teacher" | "student";
+type UserRole = "admin" | "teacher" | "student";
 
 type RateLimitRole = UserRole | "guest";

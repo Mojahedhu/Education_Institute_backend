@@ -8,7 +8,7 @@ const securityMiddleware = async (
   next: NextFunction,
 ) => {
   // If NOE_ENV is TEST, skip security middleware
-  if (process.env.NOE_ENV === "test") {
+  if (process.env.NODE_ENV === "test") {
     return next();
   }
 
@@ -27,6 +27,7 @@ const securityMiddleware = async (
       case "student":
         limit = 10;
         message = "User request limit exceeded (10 per minute). Please wait.";
+        break;
       default:
         limit = 5;
         message =
