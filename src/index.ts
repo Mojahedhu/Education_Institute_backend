@@ -22,11 +22,12 @@ app.use(
   }),
 );
 
-app.all("/api/auth/*splat", toNodeHandler(auth));
-
-app.use(express.json());
-
+// 1. Mount security middleware before auth so /api/auth routes are protected
 app.use(securityMiddleware);
+// 2. Auth routes handled by Better Auth
+app.all("/api/auth/*splat", toNodeHandler(auth));
+// 3. Keep express.json() after Better Auth
+app.use(express.json());
 
 app.use("/api/subjects", subjectRouter);
 
