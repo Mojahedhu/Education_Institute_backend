@@ -1,3 +1,6 @@
+import("apminsight")
+  .then(({ default: AgentAPI }) => AgentAPI.config())
+  .catch(() => console.log("APM not available in this environment"));
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
@@ -13,6 +16,14 @@ if (!FRONTEND_URL) {
 }
 
 const app = express();
+
+// Set TRUST_PROXY=1 in production (Railway), or leave unset / false for local
+const trustProxy = process.env.TRUST_PROXY
+  ? Number(process.env.TRUST_PROXY) || process.env.TRUST_PROXY
+  : process.env.NODE_ENV === "production"
+    ? 1
+    : false;
+app.set("trust proxy", trustProxy);
 
 app.use(
   cors({

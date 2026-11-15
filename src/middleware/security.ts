@@ -2,6 +2,8 @@ import { NextFunction, Request, Response } from "express";
 import aj from "../config/arcjet.js";
 import { ArcjetNodeRequest, slidingWindow } from "@arcjet/node";
 
+const isProduction = process.env.NODE_ENV === "production";
+
 const securityMiddleware = async (
   req: Request,
   res: Response,
@@ -48,7 +50,9 @@ const securityMiddleware = async (
       method: req.method,
       url: req?.originalUrl ?? req.url,
       socket: {
-        remoteAddress: req.socket.remoteAddress ?? req.ip ?? "0.0.0.0",
+        remoteAddress: isProduction
+          ? (req.socket.remoteAddress ?? "0.0.0.0")
+          : (req.socket.remoteAddress ?? req.ip ?? "0.0.0.0"),
       },
     };
 

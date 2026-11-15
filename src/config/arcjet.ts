@@ -9,6 +9,10 @@ if (!process.env.ARCJET_KEY && process.env.NODE_ENV !== "test") {
 // Configure Arcjet with security rules.
 const aj = arcjet({
   key: process.env.ARCJET_KEY!,
+  // Tell Arcjet to trust proxy forwarding from your reverse proxy network
+  // In containerized cloud environments like Railway, private/local subnet ranges handle proxy routing:
+  proxies: ["10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16", "127.0.0.1"],
+
   rules: [
     shield({ mode: "LIVE" }),
     // Create a bot detection rule
