@@ -52,7 +52,9 @@ const securityMiddleware = async (
       },
     };
 
-    const decision = await client.protect(arcjetRequest);
+    const decision = await client.protect(arcjetRequest, {
+      ...(req.ip ? { ipSrc: req.ip } : {}),
+    });
     if (decision.isDenied() && decision.reason.isBot()) {
       return res.status(403).json({
         error: "Forbidden",

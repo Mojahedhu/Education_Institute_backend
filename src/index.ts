@@ -1,3 +1,6 @@
+import("apminsight")
+  .then(({ default: AgentAPI }) => AgentAPI.config())
+  .catch(() => console.log("APM not available in this environment"));
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
@@ -13,6 +16,7 @@ if (!FRONTEND_URL) {
 }
 
 const app = express();
+app.set("trust proxy", true);
 
 app.use(
   cors({
