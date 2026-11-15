@@ -16,7 +16,14 @@ if (!FRONTEND_URL) {
 }
 
 const app = express();
-app.set("trust proxy", true);
+
+// Set TRUST_PROXY=1 in production (Railway), or leave unset / false for local
+const trustProxy = process.env.TRUST_PROXY
+  ? Number(process.env.TRUST_PROXY) || process.env.TRUST_PROXY
+  : process.env.NODE_ENV === "production"
+    ? 1
+    : false;
+app.set("trust proxy", trustProxy);
 
 app.use(
   cors({
