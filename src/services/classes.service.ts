@@ -14,6 +14,7 @@ export async function insertClass({
   description,
   bannerUrl,
   bannerCldPubId,
+  schedules,
 }: CreateClassInput) {
   return classesRepository.createClass({
     name,
@@ -24,5 +25,6 @@ export async function insertClass({
     description,
     bannerUrl,
     bannerCldPubId,
+    schedules,
   });
 }

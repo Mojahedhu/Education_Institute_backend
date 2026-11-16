@@ -7,5 +7,5 @@ export async function createClass(req: Request, res: Response) {
 
   const created = await insertClass({ ...input });
 
-  res.status(200).json({ data: created });
+  res.status(201).json({ data: created });
 }

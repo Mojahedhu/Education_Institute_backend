@@ -37,12 +37,16 @@ export const createClassBody = z.object({
     .string("Description is required")
     .min(5, "Description must be at least 5 characters"),
   subjectId: z.coerce
-    .number("Subject id is required")
-    .min(1, "Subject id must be at least 1 token"),
+    .number({ error: "Subject id is required" })
+    .int("Subject id must be an integer")
+    .min(1, "Subject id must be at least 1")
+    .max(2147483647, "Subject id cannot exceed 2147483647"),
   teacherId: z.string().trim().min(1, "Teacher id must be at least 1"),
   capacity: z.coerce
-    .number("Capacity is required")
-    .min(1, "Capacity must be at least 1"),
+    .number({ error: "Capacity is required" })
+    .int("Capacity must be an integer")
+    .min(1, "Capacity must be at least 1")
+    .max(2147483647, "Capacity cannot exceed 2147483647"),
   status: z.enum(["active", "inactive"]),
   bannerUrl: z.url(),
 

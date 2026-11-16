@@ -9,12 +9,13 @@ export const classesRepository = {
   /* -------------------------------------------------------------------------- */
 
   async createClass(input: CreateClassInput) {
+    const { schedules, ...rest } = input;
     const [created] = await db
       .insert(classes)
       .values({
-        ...input,
+        ...rest,
         inviteCode: generateInviteCode(),
-        schedules: [],
+        schedules: schedules ?? [],
       })
       .returning({ id: classes.id });
 
