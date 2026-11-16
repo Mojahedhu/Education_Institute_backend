@@ -14,20 +14,16 @@ import { db } from "../db/index.js";
 import { departments, subjects } from "../db/schema/app.js";
 import { escapeLike, totalOf } from "../utils/utils.js";
 
-export interface FindSubjectsFilter {
-  search?: string | undefined;
-  department?: string | undefined;
-  limit: number;
-  offset: number;
-}
-
 export const subjectRepository = {
   async findManyWithDepartment({
     search,
     department,
     limit,
     offset,
-  }: FindSubjectsFilter) {
+  }: Page & {
+    search?: string | undefined;
+    department?: string | undefined;
+  }) {
     const conditions: (SQL | undefined)[] = [];
 
     if (search) {

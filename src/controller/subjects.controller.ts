@@ -2,9 +2,9 @@ import { Request, Response } from "express";
 
 // Get all subjects with optional search, filter, and pagination
 
-import { listSubjectsQuery } from "../validation/subjects.js";
+import { listSubjectsQuery } from "../validation/subjects.validation.js";
 import { buildPagination, getOffset } from "../utils/utils.js";
-import { listSubjects } from "../services/subjects.js";
+import { listSubjects } from "../services/subjects.service.js";
 
 export async function getSubjects(req: Request, res: Response) {
   const { page, limit, search, department } = listSubjectsQuery.parse(

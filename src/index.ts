@@ -9,6 +9,9 @@ import subjectRouter from "./routes/subject.js";
 import securityMiddleware from "./middleware/security.js";
 import { toNodeHandler } from "better-auth/node";
 import { auth } from "./lib/auth.js";
+import userRouter from "./routes/user.js";
+import classRouter from "./routes/class.js";
+
 const PORT = Number(process.env.PORT) || 8000;
 const FRONTEND_URL = process.env.FRONTEND_URL;
 if (!FRONTEND_URL) {
@@ -34,17 +37,29 @@ app.use(
 );
 
 // 1. Mount security middleware before auth so /api/auth routes are protected
-app.use(securityMiddleware);
+// app.use(securityMiddleware);
 // 2. Auth routes handled by Better Auth
 app.all("/api/auth/*splat", toNodeHandler(auth));
 // 3. Keep express.json() after Better Auth
 app.use(express.json());
 
 app.use("/api/subjects", subjectRouter);
+app.use("/api/users", userRouter);
+app.use("/api/classes", classRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello, welcome to the Education institute API.");
 });
+
+// Place after all routes, just before app.use(errorHandler)
+app.use((req, res) => {
+  res.status(404).json({
+    error: "Not Found",
+    message: `Cannot ${req.method} ${req.originalUrl}`,
+  });
+});
+
+app.use(errorHandler);
 
 // Mount after all route registrations:
 app.use(errorHandler);

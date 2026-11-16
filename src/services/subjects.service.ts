@@ -1,4 +1,4 @@
-import { GetSubjectsArgs } from "../validation/subjects.js";
+import { GetSubjectsArgs } from "../validation/subjects.validation.js";
 
 import { subjectRepository } from "../repositories/subjects.repository.js";
 
