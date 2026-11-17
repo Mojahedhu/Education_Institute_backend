@@ -76,7 +76,8 @@ export const classesRepository = {
         .select({
           ...getTableColumns(classes),
           subject: getTableColumns(subjects),
-          teacher: getTableColumns(user),
+          // teacher: getTableColumns(user),
+          teacher: { id: user.id, name: user.name },
         })
         .from(classes)
         // Use innerJoin for either of these if the FK column is NOT NULL.
