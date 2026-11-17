@@ -1,5 +1,28 @@
 import { classesRepository } from "../repositories/classes.repository.js";
-import { CreateClassInput } from "../validation/classes.validation.js";
+import { getOffset } from "../utils/utils.js";
+import {
+  CreateClassInput,
+  ListClassArgs,
+} from "../validation/classes.validation.js";
+
+/* -------------------------------------------------------------------------- */
+/* List class                                                               */
+/* -------------------------------------------------------------------------- */
+export async function listClasses({
+  teacher,
+  subject,
+  search,
+  page,
+  limit,
+}: ListClassArgs) {
+  return classesRepository.findManyWithFilter({
+    teacher,
+    subject,
+    search,
+    offset: getOffset(page, limit),
+    limit,
+  });
+}
 
 /* -------------------------------------------------------------------------- */
 /* Create class                                                               */

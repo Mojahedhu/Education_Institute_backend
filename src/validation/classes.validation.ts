@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-import { classes } from "../db/schema/index.js";
 import { optionalText, pagination } from "./common.validation.js";
 
 export const classParams = z.object({
@@ -60,3 +59,4 @@ export const createClassBody = z.object({
 });
 
 export type CreateClassInput = z.infer<typeof createClassBody>;
+export type ListClassArgs = z.infer<typeof listClassesQuery>;
