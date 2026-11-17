@@ -5,12 +5,12 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { errorHandler } from "./middleware/error-handler.js";
-import subjectRouter from "./routes/subject.js";
+import subjectRouter from "./routes/subject.route.js";
 import securityMiddleware from "./middleware/security.js";
 import { toNodeHandler } from "better-auth/node";
 import { auth } from "./lib/auth.js";
-import userRouter from "./routes/user.js";
-import classRouter from "./routes/class.js";
+import userRouter from "./routes/user.route.js";
+import classRouter from "./routes/class.route.js";
 
 const PORT = Number(process.env.PORT) || 8000;
 const FRONTEND_URL = process.env.FRONTEND_URL;
