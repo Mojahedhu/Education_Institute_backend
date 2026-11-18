@@ -25,6 +25,14 @@ export async function listClasses({
 }
 
 /* -------------------------------------------------------------------------- */
+/* get class with id                                                               */
+/* -------------------------------------------------------------------------- */
+
+export async function findOneWithClassId(classId: number) {
+  return classesRepository.findOneWithClassId(classId);
+}
+
+/* -------------------------------------------------------------------------- */
 /* Create class                                                               */
 /* -------------------------------------------------------------------------- */
 
