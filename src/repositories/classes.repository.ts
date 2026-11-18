@@ -104,7 +104,12 @@ export const classesRepository = {
         ...getTableColumns(classes),
         subject: getTableColumns(subjects),
         department: getTableColumns(departments),
-        teacher: getTableColumns(user),
+        teacher: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          image: user.image,
+        },
       })
       .from(classes)
       .leftJoin(subjects, eq(classes.subjectId, subjects.id))
