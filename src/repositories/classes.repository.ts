@@ -10,7 +10,7 @@ import {
   SQL,
 } from "drizzle-orm";
 import { db } from "../db/index.js";
-import { classes, subjects } from "../db/schema/app.js";
+import { classes, departments, subjects } from "../db/schema/app.js";
 import { escapeLike, generateInviteCode, totalOf } from "../utils/utils.js";
 import { CreateClassInput } from "../validation/classes.validation.js";
 import { user } from "../db/schema/auth.js";
@@ -77,7 +77,7 @@ export const classesRepository = {
           ...getTableColumns(classes),
           subject: getTableColumns(subjects),
           // teacher: getTableColumns(user),
-          teacher: { id: user.id, name: user.name },
+          teacher: { id: user.id, name: user.name, image: user.image },
         })
         .from(classes)
         // Use innerJoin for either of these if the FK column is NOT NULL.
@@ -92,6 +92,35 @@ export const classesRepository = {
     ]);
     return { rows, total: totalOf(totalRows) };
   },
+
+  /* -------------------------------------------------------------------------- */
+  /* Get class Details                                                          */
+  /* -------------------------------------------------------------------------- */
+
+  // Return null when the class does not exist
+  async findOneWithClassId(classId: number) {
+    const [record] = await db
+      .select({
+        ...getTableColumns(classes),
+        subject: getTableColumns(subjects),
+        department: getTableColumns(departments),
+        teacher: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          image: user.image,
+        },
+      })
+      .from(classes)
+      .leftJoin(subjects, eq(classes.subjectId, subjects.id))
+      .leftJoin(departments, eq(subjects.departmentId, departments.id))
+      .leftJoin(user, eq(classes.teacherId, user.id))
+      .where(eq(classes.id, classId))
+      .limit(1);
+
+    return record ?? null;
+  },
+
   /* -------------------------------------------------------------------------- */
   /* Create class                                                                */
   /* -------------------------------------------------------------------------- */

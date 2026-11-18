@@ -1,9 +1,14 @@
 import express from "express";
-import { createClass, getClasses } from "../controller/classes.controller.js";
+import {
+  createClass,
+  getClassDetails,
+  getClasses,
+} from "../controller/classes.controller.js";
 
 const classRouter = express.Router();
 
 classRouter.get("/", getClasses);
+classRouter.get("/:id", getClassDetails);
 
 classRouter.post("/", createClass);
 

@@ -3,7 +3,7 @@ import { z } from "zod";
 import { optionalText, pagination } from "./common.validation.js";
 
 export const classParams = z.object({
-  id: z.coerce.number().int().positive(),
+  id: z.coerce.number().int().positive().max(2147483647),
 });
 
 export const listClassesQuery = z.object({
