@@ -17,3 +17,12 @@ subjectRouter.get("/:id/classes", getSubjectClasses);
 subjectRouter.get("/:id/users", getSubjectUsers);
 
 export default subjectRouter;
+
+// Public / General discovery
+// subjectRouter.get("/", getSubjects);
+// subjectRouter.get("/:id", getSubjectDetails);
+// Protected: Only authenticated institute members can see rosters and class details
+// subjectRouter.get("/:id/classes", requireAuth, getSubjectClasses);
+// subjectRouter.get("/:id/users", requireAuth, getSubjectUsers);
+// Protected: Only admins can create subjects
+// subjectRouter.post("/", requireAuth, requireRole("admin"), createSubject);
