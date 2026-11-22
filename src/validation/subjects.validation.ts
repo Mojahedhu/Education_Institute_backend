@@ -5,14 +5,16 @@ export const subjectParams = z.object({
   id: z.coerce.number().int().positive(),
 });
 
-export const paginationQuery = z.object(pagination);
-
 export const listSubjectsQuery = z.object({
   ...pagination,
   search: optionalText,
   department: optionalText,
 });
 
+export const listSubjectUsersQuery = z.object({
+  ...pagination,
+  role: z.enum(["student", "teacher"]).optional(),
+});
 // Adjust the max lengths to match your column definitions.
 export const createSubjectBody = z.object({
   departmentId: z.coerce.number().int().positive(),
