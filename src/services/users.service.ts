@@ -4,7 +4,7 @@ import { GetUsersArgs } from "../validation/users.validation.js";
 type ListUsersArgs = Omit<GetUsersArgs, "page"> & { offset: number };
 
 /* -------------------------------------------------------------------------- */
-/* Users                                                                   */
+/* Users                                                                      */
 /* -------------------------------------------------------------------------- */
 export async function listUsers({
   search,
@@ -18,4 +18,12 @@ export async function listUsers({
     limit,
     offset,
   });
+}
+
+/* -------------------------------------------------------------------------- */
+/* User details by Id                                                         */
+/* -------------------------------------------------------------------------- */
+
+export async function getUserById(userId: string) {
+  return await userRepository.findOneById(userId);
 }

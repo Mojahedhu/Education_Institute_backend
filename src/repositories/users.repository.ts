@@ -44,7 +44,7 @@ export const userRepository = {
     return { rows, total: totalOf(totalRows) };
   },
   /** Returns null when the user does not exist. */
-  async findUserById(userId: string) {
+  async findOneById(userId: string) {
     const [record] = await db
       .select()
       .from(user)
