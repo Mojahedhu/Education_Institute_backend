@@ -5,8 +5,6 @@ export const departmentParams = z.object({
   id: z.coerce.number().int().positive(),
 });
 
-export const paginationQuery = z.object(pagination);
-
 export const listDepartmentsQuery = z.object({
   ...pagination,
   search: z
@@ -18,7 +16,7 @@ export const listDepartmentsQuery = z.object({
 
 export const listDepartmentUsersQuery = z.object({
   ...pagination,
-  role: z.enum(["teacher", "student"]),
+  role: z.enum(["teacher", "student"]).optional(),
 });
 
 // Adjust the max lengths to match your column definitions.

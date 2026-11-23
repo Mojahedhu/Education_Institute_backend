@@ -44,10 +44,10 @@ app.all("/api/auth/*splat", toNodeHandler(auth));
 // 3. Keep express.json() after Better Auth
 app.use(express.json());
 
-app.use("/api/users", userRouter);
-app.use("/api/departments", departmentRouter);
 app.use("/api/subjects", subjectRouter);
+app.use("/api/users", userRouter);
 app.use("/api/classes", classRouter);
+app.use("/api/departments", departmentRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello, welcome to the Education institute API.");
