@@ -223,6 +223,6 @@ function usersInDepartment(role: MemberRole | undefined, departmentId: number) {
 
   return or(
     and(eq(user.role, "teacher"), exists(teacherSubquery)),
-    and(eq(user.role, "student"), exists(teacherSubquery)),
+    and(eq(user.role, "student"), exists(studentSubquery)),
   );
 }
