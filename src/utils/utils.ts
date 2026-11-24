@@ -22,6 +22,10 @@ export const totalOf = (rows: { total: number }[]) => rows[0]?.total ?? 0;
 /** Escapes %, _ and \ so user input is matched literally inside LIKE / ILIKE. */
 export const escapeLike = (value: string) => value.replace(/[\\%_]/g, "\\$&");
 
+/**
+ * Test whether it's a teacher or student
+ */
+
 export const isMemberRole = (role: string): role is MemberRole =>
   role === "teacher" || role === "student";
 
