@@ -40,18 +40,6 @@ export const subjects = pgTable("subjects", {
   ...timestamps,
 });
 
-export const departmentsRelations = relations(departments, ({ many }) => ({
-  subjects: many(subjects),
-}));
-
-export const subjectsRelations = relations(subjects, ({ one, many }) => ({
-  department: one(departments, {
-    fields: [subjects.departmentId],
-    references: [departments.id],
-  }),
-  classes: many(classes),
-}));
-
 export type Department = typeof departments.$inferSelect;
 export type NewDepartment = typeof departments.$inferInsert;
 
@@ -113,6 +101,14 @@ export const enrollments = pgTable(
 
 export const departmentRelations = relations(departments, ({ many }) => ({
   subjects: many(subjects),
+}));
+
+export const subjectsRelations = relations(subjects, ({ one, many }) => ({
+  department: one(departments, {
+    fields: [subjects.departmentId],
+    references: [departments.id],
+  }),
+  classes: many(classes),
 }));
 
 export const classesRelations = relations(classes, ({ one, many }) => ({
