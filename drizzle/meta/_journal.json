@@ -15,6 +15,13 @@
       "when": 1794574942174,
       "tag": "0001_zippy_wolfsbane",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1795596592338,
+      "tag": "0002_magical_galactus",
+      "breakpoints": true
     }
   ]
 }
