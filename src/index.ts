@@ -12,7 +12,6 @@ import { auth } from "./lib/auth.js";
 import userRouter from "./routes/user.route.js";
 import classRouter from "./routes/class.route.js";
 import { departmentRouter } from "./routes/department.route.js";
-import enrollmentRouter from "./routes/enrollment.routes.js";
 
 const PORT = Number(process.env.PORT) || 8000;
 const FRONTEND_URL = process.env.FRONTEND_URL;
@@ -49,7 +48,6 @@ app.use("/api/subjects", subjectRouter);
 app.use("/api/users", userRouter);
 app.use("/api/classes", classRouter);
 app.use("/api/departments", departmentRouter);
-app.use("/api/enrollments", enrollmentRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello, welcome to the Education institute API.");
