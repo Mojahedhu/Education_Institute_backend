@@ -90,6 +90,11 @@ export const enrollments = pgTable(
   },
   (table) => [
     primaryKey({ columns: [table.studentId, table.classId] }),
+    unique("enrollments_student_id_class_id_unique").on(
+      table.studentId,
+      table.classId,
+    ),
+    index("enrollments_student_id_idx").on(table.studentId),
     index("enrollments_class_id_idx").on(table.classId),
   ],
 );
