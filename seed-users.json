@@ -1,0 +1,187 @@
+{
+  "seededAt": "2026-11-25T08:17:58.721Z",
+  "counts": {
+    "students": 20,
+    "teachers": 5,
+    "total": 25
+  },
+  "students": [
+    {
+      "id": "5f112721-15da-46c9-9256-f915d8f648d8",
+      "name": "Student 1",
+      "email": "student1@test.local",
+      "role": "student",
+      "password": "Student@1234"
+    },
+    {
+      "id": "03338574-2788-45ee-ba8d-edf2c16f9766",
+      "name": "Student 2",
+      "email": "student2@test.local",
+      "role": "student",
+      "password": "Student@2234"
+    },
+    {
+      "id": "a1143824-0d54-4974-b929-412dc5834c5a",
+      "name": "Student 3",
+      "email": "student3@test.local",
+      "role": "student",
+      "password": "Student@3234"
+    },
+    {
+      "id": "c7501941-e382-4096-83df-796d8ec87ce3",
+      "name": "Student 4",
+      "email": "student4@test.local",
+      "role": "student",
+      "password": "Student@4234"
+    },
+    {
+      "id": "7ffc4225-8e0e-43e3-a4a2-cfb42facef33",
+      "name": "Student 5",
+      "email": "student5@test.local",
+      "role": "student",
+      "password": "Student@5234"
+    },
+    {
+      "id": "8f244e18-b69a-448c-8766-14d4dfe848e2",
+      "name": "Student 6",
+      "email": "student6@test.local",
+      "role": "student",
+      "password": "Student@6234"
+    },
+    {
+      "id": "e6cafc90-4412-4006-8c1c-ec8db75dfb97",
+      "name": "Student 7",
+      "email": "student7@test.local",
+      "role": "student",
+      "password": "Student@7234"
+    },
+    {
+      "id": "c292c303-5c35-4324-bb6c-2d4fbfa4b966",
+      "name": "Student 8",
+      "email": "student8@test.local",
+      "role": "student",
+      "password": "Student@8234"
+    },
+    {
+      "id": "11ef3b15-45fa-4677-98ac-80b42505f2a9",
+      "name": "Student 9",
+      "email": "student9@test.local",
+      "role": "student",
+      "password": "Student@9234"
+    },
+    {
+      "id": "a7f7bc56-3bb5-42ce-93d9-9f45005e73e6",
+      "name": "Student 10",
+      "email": "student10@test.local",
+      "role": "student",
+      "password": "Student@10234"
+    },
+    {
+      "id": "2be1ff37-7206-4124-a494-ff726b5d96cb",
+      "name": "Student 11",
+      "email": "student11@test.local",
+      "role": "student",
+      "password": "Student@11234"
+    },
+    {
+      "id": "36f7e0cf-993f-41a0-9ee6-69e564764619",
+      "name": "Student 12",
+      "email": "student12@test.local",
+      "role": "student",
+      "password": "Student@12234"
+    },
+    {
+      "id": "5bd73f67-0506-4c53-9c7f-2c7c4f4e7528",
+      "name": "Student 13",
+      "email": "student13@test.local",
+      "role": "student",
+      "password": "Student@13234"
+    },
+    {
+      "id": "60103bc9-1b89-4bc4-b0ec-c37a6eb1577b",
+      "name": "Student 14",
+      "email": "student14@test.local",
+      "role": "student",
+      "password": "Student@14234"
+    },
+    {
+      "id": "737dfc48-775c-47ef-8813-0d972451d741",
+      "name": "Student 15",
+      "email": "student15@test.local",
+      "role": "student",
+      "password": "Student@15234"
+    },
+    {
+      "id": "9d7a2eec-3fe5-412d-9ff3-186e170b9862",
+      "name": "Student 16",
+      "email": "student16@test.local",
+      "role": "student",
+      "password": "Student@16234"
+    },
+    {
+      "id": "f87c5dfc-9549-4c46-b7cc-23b7cdbd3b15",
+      "name": "Student 17",
+      "email": "student17@test.local",
+      "role": "student",
+      "password": "Student@17234"
+    },
+    {
+      "id": "29f6be6b-6163-4ada-9df1-c61fe0e2caac",
+      "name": "Student 18",
+      "email": "student18@test.local",
+      "role": "student",
+      "password": "Student@18234"
+    },
+    {
+      "id": "6fd73886-513d-4ff9-ba23-2a81ee13c2c0",
+      "name": "Student 19",
+      "email": "student19@test.local",
+      "role": "student",
+      "password": "Student@19234"
+    },
+    {
+      "id": "5ac7b58c-917c-4a8e-a7ca-246ab7930ca7",
+      "name": "Student 20",
+      "email": "student20@test.local",
+      "role": "student",
+      "password": "Student@20234"
+    }
+  ],
+  "teachers": [
+    {
+      "id": "916be8f6-1bbe-4736-a0f5-f2853835e30c",
+      "name": "Teacher 1",
+      "email": "teacher1@test.local",
+      "role": "teacher",
+      "password": "Teacher@1234"
+    },
+    {
+      "id": "3ea68e77-615a-496c-b988-6f142b248a11",
+      "name": "Teacher 2",
+      "email": "teacher2@test.local",
+      "role": "teacher",
+      "password": "Teacher@2234"
+    },
+    {
+      "id": "eb00379d-ec32-44bf-8f1c-21648a73e685",
+      "name": "Teacher 3",
+      "email": "teacher3@test.local",
+      "role": "teacher",
+      "password": "Teacher@3234"
+    },
+    {
+      "id": "a4b4bf92-7834-4d51-89d6-c088c991c079",
+      "name": "Teacher 4",
+      "email": "teacher4@test.local",
+      "role": "teacher",
+      "password": "Teacher@4234"
+    },
+    {
+      "id": "d09992df-b276-41c1-b470-b1328c1582cb",
+      "name": "Teacher 5",
+      "email": "teacher5@test.local",
+      "role": "teacher",
+      "password": "Teacher@5234"
+    }
+  ]
+}
