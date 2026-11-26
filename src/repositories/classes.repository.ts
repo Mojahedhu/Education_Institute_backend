@@ -3,17 +3,36 @@ import {
   count,
   desc,
   eq,
+  exists,
   getTableColumns,
   ilike,
   inArray,
   or,
+  sql,
   SQL,
 } from "drizzle-orm";
 import { db } from "../db/index.js";
-import { classes, departments, subjects } from "../db/schema/app.js";
+import {
+  classes,
+  departments,
+  enrollments,
+  subjects,
+} from "../db/schema/app.js";
 import { escapeLike, generateInviteCode, totalOf } from "../utils/utils.js";
 import { CreateClassInput } from "../validation/classes.validation.js";
 import { user } from "../db/schema/auth.js";
+
+const userColumns = {
+  id: user.id,
+  name: user.name,
+  email: user.email,
+  emailVerified: user.emailVerified,
+  image: user.image,
+  role: user.role,
+  imageCldPubId: user.imageCldPubId,
+  createdAt: user.createdAt,
+  updatedAt: user.updatedAt,
+};
 
 export const classesRepository = {
   /* -------------------------------------------------------------------------- */
@@ -139,4 +158,57 @@ export const classesRepository = {
     if (!created) throw new Error("Insert returned no row");
     return created;
   },
+  /* -------------------------------------------------------------------------- */
+  /* Users (teacher / students) of a class                                      */
+  /* -------------------------------------------------------------------------- */
+
+  // "Belongs to the class" is expressed as EXISTS (a semi-join). Compared to
+  // join + GROUP BY <every user column> + COUNT(DISTINCT), it never multiplies
+  // rows and needs no de-duplication.
+  async listClassUsers(
+    classId: number,
+    role: MemberRole,
+    { limit, offset }: Page,
+  ) {
+    // Built once and shared by the page query and the count query.
+    const where = usersInClass(role, classId);
+
+    const [rows, totalRows] = await Promise.all([
+      db
+        .select(userColumns)
+        .from(user)
+        .where(where)
+        .orderBy(desc(user.createdAt), desc(user.id))
+        .limit(limit)
+        .offset(offset),
+      db.select({ total: count() }).from(user).where(where),
+    ]);
+
+    return { rows, total: totalOf(totalRows) };
+  },
 };
+
+function usersInClass(role: MemberRole, classId: number) {
+  const teacherMembership = db
+    .select({ one: sql`1` })
+    .from(classes)
+    .where(and(eq(classes.teacherId, user.id), eq(classes.id, classId)));
+  const studentMembership = db
+    .select({ one: sql`1` })
+    .from(enrollments)
+    .where(
+      and(eq(enrollments.studentId, user.id), eq(enrollments.classId, classId)),
+    );
+
+  if (role === "teacher") {
+    return and(eq(user.role, "teacher"), exists(teacherMembership));
+  }
+  if (role === "student") {
+    return and(eq(user.role, "student"), exists(studentMembership));
+  }
+
+  return or(
+    and(eq(user.role, "teacher"), exists(teacherMembership)),
+    and(eq(user.role, "student"), exists(studentMembership)),
+  );
+}
