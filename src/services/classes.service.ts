@@ -1,5 +1,5 @@
 import { classesRepository } from "../repositories/classes.repository.js";
-import { getOffset } from "../utils/utils.js";
+import { buildPagination, getOffset } from "../utils/utils.js";
 import {
   CreateClassInput,
   ListClassArgs,
@@ -25,7 +25,7 @@ export async function listClasses({
 }
 
 /* -------------------------------------------------------------------------- */
-/* get class with id                                                               */
+/* get class with id                                                          */
 /* -------------------------------------------------------------------------- */
 
 export async function findOneWithClassId(classId: number) {
@@ -58,4 +58,34 @@ export async function insertClass({
     bannerCldPubId,
     schedules,
   });
+}
+
+/* -------------------------------------------------------------------------- */
+/* List users in a class by role with pagination                              */
+/* -------------------------------------------------------------------------- */
+
+export async function listClassUsers({
+  classId,
+  role,
+  page,
+  limit,
+}: {
+  classId: number;
+  role: MemberRole;
+  page: number;
+  limit: number;
+}) {
+  const { rows, total } = await classesRepository.listClassUsers(
+    classId,
+    role,
+    {
+      limit,
+      offset: getOffset(page, limit),
+    },
+  );
+
+  return {
+    rows,
+    pagination: buildPagination(page, limit, total),
+  };
 }

@@ -3,10 +3,12 @@ import {
   classParams,
   createClassBody,
   listClassesQuery,
+  listUsersQuery,
 } from "../validation/classes.validation.js";
 import {
   findOneWithClassId,
   insertClass,
+  listClassUsers,
 } from "../services/classes.service.js";
 
 import { listClasses } from "../services/classes.service.js";
@@ -49,4 +51,21 @@ export async function createClass(req: Request, res: Response) {
   const created = await insertClass({ ...input });
 
   res.status(201).json({ data: created });
+}
+
+export async function getClassUsers(req: Request, res: Response) {
+  const { id } = classParams.parse(req.params);
+  const { role, page, limit } = listUsersQuery.parse(req.query);
+
+  const { rows, pagination } = await listClassUsers({
+    classId: id,
+    role,
+    limit,
+    page,
+  });
+
+  res.status(200).json({
+    data: rows,
+    pagination,
+  });
 }
